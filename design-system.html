@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LLM Research @ Penn — Monica Lama</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .project-page { min-height: 100vh; background-color: #E8E3D8; padding: 4rem 2rem; color: #5C4033; }
+        .project-container { max-width: 800px; margin: 0 auto; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: #6B4C93; text-decoration: none; font-size: 1rem; font-weight: 300; letter-spacing: 1px; transition: opacity 0.3s ease; }
+        .back-link:hover { opacity: 0.7; }
+        .project-nav { margin-bottom: 3rem; display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0; }
+        .project-nav-link { color: #6B4C93; text-decoration: none; font-size: 0.85rem; font-weight: 300; letter-spacing: 1px; transition: opacity 0.3s ease; }
+        .project-nav-link:hover { opacity: 0.7; }
+        .project-nav-sep { margin: 0 1rem; color: #8B7355; font-size: 0.7rem; }
+        h1 { font-size: 2.8rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 0.5rem; color: #5C4033; }
+        .eyebrow { font-size: 0.75rem; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase; color: #8B7355; margin-bottom: 2.5rem; }
+        .project-content { font-size: 1.05rem; line-height: 1.85; font-weight: 300; color: #5C4033; }
+        .project-content h2 { font-size: 1rem; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: #8B7355; margin: 2.5rem 0 0.8rem; }
+        .project-content ul { padding-left: 1.2rem; }
+        .project-content li { margin-bottom: 0.5rem; }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+        .tag { font-size: 0.75rem; letter-spacing: 1px; padding: 0.3rem 0.8rem; border: 1px solid #8B7355; border-radius: 20px; color: #8B7355; }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <div class="project-page">
+        <div class="project-container">
+            <a href="index.html#pokerPage" class="back-link">← Back to Projects</a>
+            <div class="project-nav">
+                <a href="project-alpha.html" class="project-nav-link">Crypt0nest</a>
+                <span class="project-nav-sep">·</span>
+                <a href="mobile-app.html" class="project-nav-link">Stock Prediction</a>
+                <span class="project-nav-sep">·</span>
+                <a href="api-platform.html" class="project-nav-link">Dense Captioning</a>
+            </div>
+            <p class="eyebrow">Research · May 2025 – Present</p>
+            <h1>LLM Research @ Penn</h1>
+            <div class="project-content">
+                <h2>Overview</h2>
+                <p>Research under Prof. Chris Callison-Burch at the University of Pennsylvania, focused on vision-language models and dense image captioning. Co-published a paper demonstrating positive transfer on dense image caption training for VLMs.</p>
+                <h2>Contributions</h2>
+                <ul>
+                    <li>Co-published paper demonstrating positive transfer on dense image caption training for vision-language models</li>
+                    <li>Led backend software development for large-scale data annotation and model training pipelines for Dense Image Captioning</li>
+                    <li>Fine-tuned LLMs on diverse datasets integrating vision and language modalities using Python and vector databases (Qdrant)</li>
+                    <li>Prototyping UI and backend to annotate scientific, cultural, and 3D visuals with high-fidelity captions</li>
+                </ul>
+                <h2>Stack</h2>
+                <div class="tech-tags">
+                    <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Qdrant</span>
+                    <span class="tag">VLM</span><span class="tag">LLM Fine-tuning</span><span class="tag">Vector Databases</span><span class="tag">Multimodal</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

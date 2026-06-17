@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Movement Prediction — Monica Lama</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .project-page { min-height: 100vh; background-color: #E8E3D8; padding: 4rem 2rem; color: #5C4033; }
+        .project-container { max-width: 800px; margin: 0 auto; }
+        .back-link { display: inline-block; margin-bottom: 2rem; color: #6B4C93; text-decoration: none; font-size: 1rem; font-weight: 300; letter-spacing: 1px; transition: opacity 0.3s ease; }
+        .back-link:hover { opacity: 0.7; }
+        .project-nav { margin-bottom: 3rem; display: flex; align-items: center; flex-wrap: wrap; gap: 0.5rem 0; }
+        .project-nav-link { color: #6B4C93; text-decoration: none; font-size: 0.85rem; font-weight: 300; letter-spacing: 1px; transition: opacity 0.3s ease; }
+        .project-nav-link:hover { opacity: 0.7; }
+        .project-nav-sep { margin: 0 1rem; color: #8B7355; font-size: 0.7rem; }
+        h1 { font-size: 2.8rem; font-weight: 300; letter-spacing: 2px; margin-bottom: 0.5rem; color: #5C4033; }
+        .eyebrow { font-size: 0.75rem; font-weight: 400; letter-spacing: 2.5px; text-transform: uppercase; color: #8B7355; margin-bottom: 2.5rem; }
+        .project-content { font-size: 1.05rem; line-height: 1.85; font-weight: 300; color: #5C4033; }
+        .project-content h2 { font-size: 1rem; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; color: #8B7355; margin: 2.5rem 0 0.8rem; }
+        .project-content ul { padding-left: 1.2rem; }
+        .project-content li { margin-bottom: 0.5rem; }
+        .stats { display: flex; gap: 2.5rem; margin: 1.5rem 0; flex-wrap: wrap; }
+        .stat-value { font-size: 2rem; font-weight: 300; color: #5C4033; }
+        .stat-label { font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; color: #8B7355; }
+        .tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.8rem; }
+        .tag { font-size: 0.75rem; letter-spacing: 1px; padding: 0.3rem 0.8rem; border: 1px solid #8B7355; border-radius: 20px; color: #8B7355; }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    <div class="project-page">
+        <div class="project-container">
+            <a href="index.html#pokerPage" class="back-link">← Back to Projects</a>
+            <div class="project-nav">
+                <a href="project-alpha.html" class="project-nav-link">Crypt0nest</a>
+                <span class="project-nav-sep">·</span>
+                <a href="design-system.html" class="project-nav-link">LLM Research</a>
+                <span class="project-nav-sep">·</span>
+                <a href="api-platform.html" class="project-nav-link">Dense Captioning</a>
+            </div>
+            <p class="eyebrow">CIS 5200 · Schuylkill River Trading · April 2026</p>
+            <h1>Stock Movement Prediction</h1>
+            <div class="project-content">
+                <h2>Overview</h2>
+                <p>Multimodal neural network framework predicting stock returns by combining technical price features with FinBERT-processed financial sentiment. Compared early vs. late fusion architectures and MSE vs. NDCG ranking losses on 100 stocks spanning 2008–2016 (205K samples).</p>
+                <h2>Key Results</h2>
+                <div class="stats">
+                    <div class="stat"><div class="stat-value">0.76</div><div class="stat-label">Sharpe Ratio</div></div>
+                    <div class="stat"><div class="stat-value">42.8%</div><div class="stat-label">Total Return</div></div>
+                    <div class="stat"><div class="stat-value">84%</div><div class="stat-label">Fewer Params (NDCG)</div></div>
+                </div>
+                <h2>Findings</h2>
+                <ul>
+                    <li>NDCG loss ties best-in-class performance using 84% fewer parameters than a 6x more complex model</li>
+                    <li>Late fusion more consistent across market regimes; early fusion higher risk/reward</li>
+                    <li>Outperformed SPY (11.7%) and QQQ (12.9%) over 18-month out-of-sample period</li>
+                    <li>Time-series cross-validation revealed insights missed by simple train/test splits</li>
+                </ul>
+                <h2>Stack</h2>
+                <div class="tech-tags">
+                    <span class="tag">PyTorch</span><span class="tag">FinBERT</span><span class="tag">NDCG Loss</span>
+                    <span class="tag">XGBoost</span><span class="tag">LSTM</span><span class="tag">Time-Series CV</span><span class="tag">Python</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

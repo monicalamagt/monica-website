@@ -1,0 +1,1816 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --z-overlay: 50;
+    --z-modal: 2000;
+    --z-cursor: 9000;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+    height: 100%;
+    overflow-x: clip;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure smooth scrolling on all browsers */
+@supports (scroll-snap-type: y mandatory) {
+    html {
+        scroll-snap-type: y mandatory;
+    }
+}
+
+body {
+    background-color: #E8E3D8;
+    color: #5C4033;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    cursor: none;
+    overflow-x: clip;
+    overflow-y: scroll;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(232, 227, 216, 0) 0%,
+        rgba(245, 242, 237, 0.6) 40%,
+        rgba(245, 242, 237, 0.9) 60%,
+        rgba(245, 242, 237, 1) 100%
+    );
+    pointer-events: none;
+    z-index: var(--z-overlay);
+    opacity: var(--gradient-opacity, 0);
+    transition: opacity 0.3s ease;
+}
+
+
+/* Page Structure */
+.page {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    flex-shrink: 0;
+}
+
+.page-1 {
+    position: relative;
+    z-index: 1;
+    background-color: #E8E3D8;
+    overflow: hidden;
+}
+
+.page-1 .page-content {
+    position: relative;
+    z-index: 1;
+}
+
+.page-1-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 L 50 0' stroke='%235C4033' stroke-width='1' stroke-dasharray='3,3' fill='none' opacity='0.3'/%3E%3Cpath d='M 0 0 L 0 50' stroke='%235C4033' stroke-width='1' stroke-dasharray='3,3' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.page-1::before {
+    content: '';
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 79px,
+            rgba(92, 64, 51, 0.3) 80px,
+            rgba(92, 64, 51, 0.3) 83px,
+            transparent 84px
+        );
+    background-size: 100% 80px;
+    background-position: 0 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.page-1::after {
+    content: '';
+    position: absolute;
+    top: 55%;
+    left: 48%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 99px,
+            rgba(92, 64, 51, 0.3) 100px,
+            rgba(92, 64, 51, 0.3) 103px,
+            transparent 104px
+        );
+    background-size: 100% 100px;
+    background-position: 0 0;
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+}
+
+.page-2 {
+    position: relative;
+    z-index: 1;
+    background-color: #F5F2ED;
+    overflow: hidden;
+}
+
+.page-2 .page-content {
+    position: relative;
+    z-index: 1;
+}
+
+.page-2-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 L 50 0' stroke='%235C4033' stroke-width='1' stroke-dasharray='3,3' fill='none' opacity='0.3'/%3E%3Cpath d='M 0 0 L 0 50' stroke='%235C4033' stroke-width='1' stroke-dasharray='3,3' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+}
+
+.page-2::before {
+    content: '';
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 79px,
+            rgba(92, 64, 51, 0.3) 80px,
+            rgba(92, 64, 51, 0.3) 83px,
+            transparent 84px
+        );
+    background-size: 100% 80px;
+    background-position: 0 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+}
+
+.page-2::after {
+    content: '';
+    position: absolute;
+    top: 55%;
+    left: 48%;
+    width: 200%;
+    height: 200%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    background-image: 
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 99px,
+            rgba(92, 64, 51, 0.3) 100px,
+            rgba(92, 64, 51, 0.3) 103px,
+            transparent 104px
+        );
+    background-size: 100% 100px;
+    background-position: 0 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 1;
+}
+
+.page-2-squiggle {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.5;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.page-3 {
+    position: relative;
+    z-index: 1;
+}
+
+.page-content {
+    text-align: center;
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+/* Page 1: Name and Scroll */
+
+.page-1 h1 {
+    font-size: clamp(2.75rem, 11vw, 6rem);
+    font-weight: 300;
+    letter-spacing: clamp(1px, 0.4vw, 4px);
+    margin-bottom: 1rem;
+    color: #5C4033;
+}
+
+.page-1 h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #6B4C93;
+}
+
+/* Page 2: Chatbot */
+.page-2 {
+    background-color: #F5F2ED;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    z-index: 1;
+}
+
+.page-2-about {
+    width: 36%;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2.5rem;
+    position: relative;
+    z-index: 2;
+    gap: 1.2rem;
+}
+
+.page-2-photo {
+    width: 100%;
+    max-width: 300px;
+    max-height: 62vh;
+    object-fit: cover;
+    object-position: center top;
+    opacity: 0.9;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.09);
+}
+
+.page-2-credentials {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    margin: 0;
+}
+
+.page-2-credentials p {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: #5C4033;
+    margin: 0;
+    text-align: center;
+}
+
+.page-2-bio {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    font-weight: 400;
+    color: #3D2010;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+.page-2-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 8.5rem 3rem 2rem;
+    position: relative;
+    z-index: 2;
+    gap: 1.2rem;
+    min-height: 0;
+}
+
+.page-2-chat header {
+    background-color: #F5F2ED;
+    margin-bottom: 0.5rem;
+}
+
+.page-2-chat header h1 {
+    font-size: 1.2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 0.2rem;
+    color: #5C4033;
+}
+
+.page-2-chat header h2 {
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    color: #6B4C93;
+}
+
+.page-2-chat .chat-box {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: none;
+    border-radius: 12px;
+    padding: 1.2rem;
+    background-color: rgba(255, 255, 255, 0.45);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: none;
+    overscroll-behavior: contain;
+    width: 100%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.07);
+}
+
+.chat-box {
+    height: 400px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid #D4C5B9;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    background-color: rgba(255, 255, 255, 0.3);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: none;
+}
+
+.message {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.bot-message {
+    background-color: rgba(255, 255, 255, 0.6);
+    align-self: flex-start;
+}
+
+.user-message {
+    background-color: rgba(92, 64, 51, 0.1);
+    align-self: flex-end;
+    margin-left: auto;
+}
+
+.message p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.page-2-chat .message p {
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.page-2-chat .chat-input-container {
+    width: 100%;
+    background-color: #F5F2ED;
+}
+
+.chat-input-container {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#chatInput {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    border: none;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #5C4033;
+    font-size: 1rem;
+    font-family: inherit;
+    outline: none;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.09);
+}
+
+.page-2-chat #chatInput {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.8rem;
+}
+
+#chatInput:focus-visible {
+    background-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 5px 20px rgba(92, 64, 51, 0.15);
+}
+
+#chatInput::placeholder {
+    color: #8B7355;
+}
+
+#sendButton {
+    padding: 0.8rem 2rem;
+    border: 1px solid #5C4033;
+    border-radius: 8px;
+    background-color: #5C4033;
+    color: white;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#sendButton:hover {
+    background-color: #4A3429;
+}
+
+#sendButton:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.loading {
+    opacity: 0.6;
+    font-style: italic;
+}
+
+/* Page 3: My Projects */
+.page-3 {
+    background-color: #E8E3D8;
+    overflow: hidden;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .page-2 {
+        flex-direction: column;
+    }
+
+    .page-2-about {
+        width: 100%;
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 1.2rem;
+        padding: 2rem;
+    }
+
+    .page-2-photo {
+        max-width: 120px;
+        max-height: 160px;
+    }
+
+    .page-2-chat {
+        width: 100%;
+        flex: 1;
+        padding: 1rem 2rem 2rem;
+        min-height: 0;
+    }
+}
+
+.projects-label-container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.projects-label {
+    font-size: 1.6rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #5C4033;
+    text-transform: lowercase;
+}
+
+.projects-hint {
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    color: #5C4033;
+    opacity: 0.7;
+    text-transform: lowercase;
+}
+
+.bubbles-container {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    cursor: none; /* Use custom cursor */
+    pointer-events: auto; /* Allow interactions */
+}
+
+.bubbles-container canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: none; /* Use custom cursor */
+    pointer-events: auto; /* Allow interactions */
+}
+
+.blob-label {
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    /* Integrated into surface - no background rectangle */
+}
+
+/* Old CSS bubbles - now using Three.js */
+.project-bubble-old {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                box-shadow 0.4s ease,
+                filter 0.4s ease;
+    will-change: transform, left, top;
+    overflow: hidden;
+    /* High contrast shadows - deep navy/black */
+    box-shadow: 
+        0 0 40px rgba(138, 43, 226, 0.5),
+        0 0 80px rgba(25, 25, 112, 0.4),
+        /* Very deep shadows */
+        inset -30px -30px 60px rgba(0, 0, 20, 0.8),
+        inset -15px -15px 30px rgba(0, 0, 0, 0.6),
+        /* Bright highlights */
+        inset 30px 30px 60px rgba(255, 255, 255, 0.4),
+        inset 15px 15px 30px rgba(255, 255, 255, 0.3);
+    /* Organic blob shape - set dynamically via JavaScript */
+    border-radius: 50%;
+    filter: contrast(1.2) brightness(1.1);
+}
+
+/* Metallic base layer - high contrast liquid metal */
+.project-bubble::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        /* Very subtle texture - minimal noise for glossy surface */
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.4' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E"),
+        /* Sharp, bright specular highlights - almost white */
+        radial-gradient(ellipse at 25% 25%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 8%, rgba(255, 255, 255, 0.4) 15%, transparent 30%),
+        radial-gradient(ellipse at 75% 20%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.6) 10%, transparent 25%),
+        radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.85) 0%, transparent 20%),
+        /* Deep dark shadows - navy/black */
+        radial-gradient(ellipse at 20% 80%, rgba(0, 0, 20, 0.9) 0%, rgba(0, 0, 40, 0.7) 25%, transparent 50%),
+        radial-gradient(ellipse at 80% 85%, rgba(0, 0, 30, 0.85) 0%, rgba(0, 0, 50, 0.6) 30%, transparent 55%),
+        radial-gradient(ellipse at 10% 50%, rgba(0, 0, 25, 0.8) 0%, transparent 40%),
+        /* Iridescent color flow - purple/blue/pink that shifts */
+        radial-gradient(ellipse at 30% 60%, rgba(138, 43, 226, 0.7) 0%, rgba(138, 43, 226, 0.4) 30%, transparent 60%),
+        radial-gradient(ellipse at 70% 75%, rgba(25, 25, 112, 0.8) 0%, rgba(25, 25, 112, 0.5) 35%, transparent 65%),
+        radial-gradient(ellipse at 50% 50%, rgba(72, 61, 139, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse at 15% 40%, rgba(219, 112, 147, 0.5) 0%, transparent 45%),
+        radial-gradient(ellipse at 85% 55%, rgba(147, 112, 219, 0.6) 0%, transparent 50%),
+        radial-gradient(ellipse at 40% 80%, rgba(75, 0, 130, 0.7) 0%, transparent 55%),
+        /* Base metallic gradient with high contrast */
+        linear-gradient(135deg, 
+            rgba(138, 43, 226, 0.9) 0%, 
+            rgba(219, 112, 147, 0.6) 15%,
+            rgba(72, 61, 139, 0.85) 30%, 
+            rgba(25, 25, 112, 0.95) 50%, 
+            rgba(147, 112, 219, 0.8) 70%,
+            rgba(75, 0, 130, 0.9) 100%);
+    border-radius: inherit;
+    animation: liquid-shimmer 18s ease-in-out infinite;
+    mix-blend-mode: normal;
+}
+
+/* Sharp reflective highlight layer - environment reflections */
+.project-bubble::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        /* Sharp, bright reflections - like environment map */
+        radial-gradient(ellipse at 30% 30%, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.9) 5%, rgba(255, 255, 255, 0.6) 12%, transparent 25%),
+        radial-gradient(ellipse at 70% 25%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 8%, transparent 20%),
+        radial-gradient(ellipse at 55% 15%, rgba(255, 255, 255, 0.9) 0%, transparent 18%),
+        /* Secondary reflection spots */
+        radial-gradient(ellipse at 20% 70%, rgba(255, 255, 255, 0.4) 0%, transparent 30%),
+        radial-gradient(ellipse at 80% 75%, rgba(255, 255, 255, 0.35) 0%, transparent 28%),
+        /* Color reflections */
+        radial-gradient(ellipse at 45% 65%, rgba(255, 192, 203, 0.3) 0%, transparent 35%),
+        linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.15) 25%, transparent 50%);
+    border-radius: inherit;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    opacity: 0.85;
+    filter: contrast(1.3);
+}
+
+@keyframes liquid-shimmer {
+    0%, 100% {
+        filter: brightness(1) contrast(1.15) hue-rotate(0deg) saturate(1.1);
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    20% {
+        filter: brightness(1.05) contrast(1.2) hue-rotate(8deg) saturate(1.15);
+        transform: rotate(0.5deg) scale(1.005);
+        opacity: 1;
+    }
+    40% {
+        filter: brightness(1.1) contrast(1.25) hue-rotate(-5deg) saturate(1.2);
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+    60% {
+        filter: brightness(1.05) contrast(1.2) hue-rotate(6deg) saturate(1.15);
+        transform: rotate(-0.5deg) scale(1.005);
+        opacity: 1;
+    }
+    80% {
+        filter: brightness(1.08) contrast(1.22) hue-rotate(-3deg) saturate(1.18);
+        transform: rotate(0deg) scale(1);
+        opacity: 1;
+    }
+}
+
+.project-bubble-label {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    transition: opacity 0.4s ease, font-size 0.4s ease, transform 0.4s ease, text-shadow 0.4s ease, filter 0.4s ease;
+    pointer-events: none;
+    z-index: 100;
+    /* Subtle text shadow - integrated into blob */
+    text-shadow: 
+        0 1px 3px rgba(0, 0, 0, 0.5),
+        0 2px 6px rgba(0, 0, 0, 0.3),
+        0 0 10px rgba(138, 43, 226, 0.4);
+    /* No background - integrated into surface */
+}
+
+.project-bubble:hover {
+    transform: scale(1.08);
+    filter: brightness(1.25) contrast(1.3) saturate(1.2);
+    box-shadow: 
+        0 0 40px rgba(138, 43, 226, 0.6),
+        0 0 80px rgba(25, 25, 112, 0.4),
+        /* Even deeper shadows on hover */
+        inset -35px -35px 70px rgba(0, 0, 20, 0.9),
+        inset -20px -20px 40px rgba(0, 0, 0, 0.7),
+        /* Brighter highlights on hover */
+        inset 35px 35px 70px rgba(255, 255, 255, 0.5),
+        inset 20px 20px 40px rgba(255, 255, 255, 0.4);
+    z-index: 1000;
+}
+
+.project-bubble:hover .project-bubble-label {
+    opacity: 1;
+    font-size: 0.75rem;
+    transform: translateY(-2px);
+    filter: brightness(1.2);
+    text-shadow: 
+        0 1px 4px rgba(0, 0, 0, 0.7),
+        0 2px 8px rgba(0, 0, 0, 0.5),
+        0 0 15px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(138, 43, 226, 0.5);
+}
+
+.project-bubble.mobile-tapped .project-bubble-label {
+    opacity: 1;
+    font-size: 0.9rem;
+    transform: translateY(-3px);
+}
+
+/* Size variations */
+.bubble-small {
+    width: 120px;
+    height: 120px;
+}
+
+.bubble-medium {
+    width: 180px;
+    height: 180px;
+}
+
+.bubble-large {
+    width: 240px;
+    height: 240px;
+}
+
+.bubble-xlarge {
+    width: 300px;
+    height: 300px;
+}
+
+/* Project Detail Modal */
+.project-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(232, 227, 216, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: var(--z-modal);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: none; /* Keep custom cursor visible */
+    pointer-events: auto; /* Allow interactions but show custom cursor */
+}
+
+/* Ensure custom cursor is above modal */
+.project-modal.active ~ .custom-cursor,
+.project-modal.active + * .custom-cursor,
+body:has(.project-modal.active) .custom-cursor {
+    z-index: var(--z-cursor) !important;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.project-modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #5C4033;
+    border: 1px solid #D4C5B9;
+    border-radius: 16px;
+    max-width: 90%;
+    max-height: 90vh;
+    width: 800px;
+    padding: 3rem;
+    position: relative;
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    cursor: pointer;
+}
+
+.modal-content:hover {
+    transform: scale(0.82);
+}
+
+.modal-click-more {
+    position: absolute;
+    top: calc(50vh - 45vh - 1rem);
+    left: calc(50vw - 400px);
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: #6B4C93;
+    font-style: italic;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+@media (max-width: 900px) {
+    .modal-click-more {
+        left: 5%;
+        top: calc(50vh - 45vh - 1rem);
+    }
+}
+
+.project-modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #E8E3D8;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.modal-close:hover {
+    background-color: rgba(232, 227, 216, 0.2);
+    transform: rotate(90deg);
+}
+
+.modal-body {
+    color: #E8E3D8;
+}
+
+.modal-body h2 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    color: #E8E3D8;
+}
+
+.modal-body p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-weight: 300;
+    color: #E8E3D8;
+}
+
+/* Custom Cursor */
+.custom-cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #5C4033;
+    border-radius: 50%;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: var(--z-cursor);
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease-out;
+    display: block;
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Page 4: Poker Projects */
+.page-4 {
+    background-color: #2E1A0E;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(92, 64, 51, 0.25) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(92, 64, 51, 0.25) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(0, 0, 0, 0.08) 0%, transparent 50%);
+    position: relative;
+    overflow: visible;
+    cursor: default;
+}
+
+/* Subtle dotted grid – ties poker page to rest of site */
+.page-4::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 L 50 0' stroke='%23E8E3D8' stroke-width='1' stroke-dasharray='3,3' fill='none' opacity='0.3'/%3E%3Cpath d='M 0 0 L 0 50' stroke='%23E8E3D8' stroke-width='1' stroke-dasharray='3,3' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: 50px 50px;
+    pointer-events: none;
+    opacity: 0.07;
+    z-index: 0;
+}
+
+.skip-intro-link {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    z-index: 100;
+    color: rgba(92, 64, 51, 0.7);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    pointer-events: auto;
+}
+
+.skip-intro-link:hover {
+    color: rgba(92, 64, 51, 1);
+    opacity: 1;
+}
+
+/* Poker Chip Stacks */
+.poker-chips-container {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 50;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-end;
+}
+
+.chip-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.chip {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 3px solid #D4C5B9;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 4px rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+
+.chip-purple-1 {
+    background: radial-gradient(circle at 30% 30%, #D4B3E8, #8B5CF6);
+}
+
+.chip-purple-2 {
+    background: radial-gradient(circle at 30% 30%, #C4A3D8, #7B4CD6);
+}
+
+.chip-purple-3 {
+    background: radial-gradient(circle at 30% 30%, #B493C8, #6B3CC6);
+}
+
+.chip::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 70%;
+    height: 70%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    pointer-events: none;
+}
+
+.poker-table {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    overflow: visible;
+}
+
+/* Intro State */
+.intro-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4rem;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: visible;
+}
+
+/* Position deal button at bottom center of page 4 */
+.page-4 .deal-button {
+    position: absolute !important;
+    bottom: 5% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 1000 !important;
+    margin: 0 !important;
+}
+
+.card-deck-intro {
+    position: relative;
+    width: 120px;
+    height: 180px;
+}
+
+.card-stack {
+    position: relative;
+    width: 150px; /* Wider to accommodate offset cards */
+    height: 168px;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.card-stack .card-back {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 120px;
+    height: 168px;
+    background: #E8E3D8; /* Beige face-down */
+    border-radius: 8px; /* Rounded corners like real cards */
+    border: 3px solid #5C4033; /* Outer border */
+    /* Inner white border and soft elevation using box-shadow */
+    box-shadow: 
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8),
+        0 2px 8px rgba(0, 0, 0, 0.15), 
+        0 4px 16px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+/* ML initials centered on card back - only on top card */
+.card-stack .card-back:nth-child(1)::before {
+    content: 'ML';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #8B6F47; /* Muted brass / soft espresso brown */
+    font-size: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+/* Subtle geometric pattern (diamond lattice) and paper texture - only on top card */
+.card-stack .card-back:nth-child(1)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        /* Diamond lattice pattern */
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 20px,
+            rgba(92, 64, 51, 0.06) 20px,
+            rgba(92, 64, 51, 0.06) 21px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 20px,
+            rgba(92, 64, 51, 0.06) 20px,
+            rgba(92, 64, 51, 0.06) 21px
+        ),
+        /* Paper texture noise */
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.02) 2px,
+            rgba(0, 0, 0, 0.02) 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.02) 2px,
+            rgba(0, 0, 0, 0.02) 4px
+        );
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0.6;
+}
+
+/* Hide design on all cards except the first */
+.card-stack .card-back:not(:nth-child(1))::before,
+.card-stack .card-back:not(:nth-child(1))::after {
+    display: none;
+}
+
+/* Stack cards overlapping - same Y position, same Z position, horizontal X offsets */
+/* All cards start at top: 0, left: 0, then transform offsets them */
+.card-stack .card-back:nth-child(1) {
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(0, 0) !important;
+    z-index: 1;
+}
+
+.card-stack .card-back:nth-child(2) {
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(4px, 0) !important;
+    z-index: 1;
+}
+
+.card-stack .card-back:nth-child(2)::before,
+.card-stack .card-back:nth-child(2)::after {
+    display: none;
+}
+
+.card-stack .card-back:nth-child(3) {
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(8px, 0) !important;
+    z-index: 1;
+}
+
+.card-stack .card-back:nth-child(3)::before,
+.card-stack .card-back:nth-child(3)::after {
+    display: none;
+}
+
+.card-stack .card-back:nth-child(4) {
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(12px, 0) !important;
+    z-index: 1;
+}
+
+.card-stack .card-back:nth-child(4)::before,
+.card-stack .card-back:nth-child(4)::after {
+    display: none;
+}
+
+.card-stack .card-back:nth-child(5) {
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(16px, 0) !important;
+    z-index: 1;
+}
+
+.card-stack .card-back:nth-child(5)::before,
+.card-stack .card-back:nth-child(5)::after {
+    display: none;
+}
+
+.card-stack .card-back:nth-child(6) {
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(20px, 0) !important;
+    z-index: 1;
+}
+
+.card-stack .card-back:nth-child(6)::before,
+.card-stack .card-back:nth-child(6)::after {
+    display: none;
+}
+
+.card-stack .card-back:nth-child(7) {
+    top: 0 !important;
+    left: 0 !important;
+    transform: translate(24px, 0) !important;
+    z-index: 1;
+}
+
+.card-stack .card-back:nth-child(7)::before,
+.card-stack .card-back:nth-child(7)::after {
+    display: none;
+}
+
+/* Deal Button – chip style, on-brand colors */
+.deal-button {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #5C4033;
+    border: 4px solid #E8E3D8;
+    color: #E8E3D8;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5), inset 0 1px 6px rgba(255, 255, 255, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    overflow: hidden;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+}
+
+.deal-button::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    border-radius: 50%;
+    border: 1.5px solid rgba(232, 227, 216, 0.2);
+    pointer-events: none;
+}
+
+.page-4 .deal-button:hover {
+    transform: translateX(-50%) scale(1.06) !important;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), inset 0 1px 6px rgba(255, 255, 255, 0.12);
+}
+
+.page-4 .deal-button:active {
+    transform: translateX(-50%) scale(0.97) !important;
+}
+
+.deal-button:focus-visible {
+    outline: 2px solid #E8E3D8;
+    outline-offset: 4px;
+}
+
+.deal-button-text {
+    position: relative;
+    z-index: 1;
+}
+
+/* Dealt State - Poker Game */
+.dealt-state {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Card Stack Container */
+.card-stack-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Player Cards (Bottom Center) */
+.player-cards {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 20;
+}
+
+/* Community Cards (Center Half Circle) */
+.community-cards {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+}
+
+/* Playing Card */
+.playing-card {
+    width: 80px;
+    height: 112px;
+    background: #E8E3D8 !important; /* Page 1 beige */
+    border: 2px solid #5C4033;
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0.5rem;
+    box-sizing: border-box;
+    position: relative;
+    opacity: 0;
+}
+
+.playing-card.dealing {
+    animation: dealPlayingCard 0.6s ease-out forwards;
+}
+
+@keyframes dealPlayingCard {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(0deg) scale(0.5);
+    }
+    100% {
+        opacity: 1 !important;
+        transform: translate(var(--final-x, 0), var(--final-y, 0)) rotate(0deg) scale(1);
+    }
+}
+
+/* Card Suit Symbols */
+.card-suit {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+.card-suit-top {
+    align-self: flex-start;
+}
+
+.card-suit-bottom {
+    align-self: flex-end;
+    transform: rotate(180deg);
+}
+
+.card-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1a1a1a;
+}
+
+.card-suit-red {
+    color: #d32f2f;
+}
+
+.card-suit-black {
+    color: #1a1a1a;
+}
+
+/* Continue / Reveal Button */
+.continue-button {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.75rem 2.2rem;
+    background: #E8E3D8;
+    border: 1.5px solid #5C4033;
+    border-radius: 0;
+    color: #5C4033;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    z-index: 30;
+    pointer-events: auto;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease, opacity 0.3s ease;
+}
+
+.continue-button:hover {
+    background: #5C4033;
+    color: #E8E3D8;
+    transform: translateX(-50%) translateY(-2px);
+}
+
+.continue-button:active {
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Project Card */
+.project-card {
+    width: 200px;
+    height: 280px;
+    position: relative;
+    perspective: 1000px;
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.project-card.flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.card-face {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 0; /* Square edges */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.card-front {
+    background: #E8E3D8;
+    border: 2px solid #5C4033;
+}
+
+.card-back {
+    background: #3D2015;
+    border: 2px solid #5C4033;
+    transform: rotateY(180deg);
+    color: #E8E3D8;
+}
+
+/* Card Front */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #5C4033;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.chip-badge {
+    display: inline-block;
+    padding: 0.35rem 0.8rem;
+    background: transparent;
+    border: 1px solid #5C4033;
+    border-radius: 0;
+    font-size: 0.65rem;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    color: #5C4033;
+    text-transform: lowercase;
+}
+
+/* Card Back */
+.card-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    opacity: 0.95;
+}
+
+.card-tech {
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    opacity: 0.9;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+.card-links {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card-link {
+    padding: 0.45rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(232, 227, 216, 0.4);
+    border-radius: 0;
+    color: #E8E3D8;
+    text-decoration: none;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.card-link:hover {
+    background: rgba(232, 227, 216, 0.12);
+    border-color: rgba(232, 227, 216, 0.8);
+    transform: translateY(-2px);
+}
+
+/* Card Dealing Animation */
+.project-card.dealing {
+    animation: dealCard 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+@keyframes dealCard {
+    0% {
+        opacity: 0;
+        transform: translate(0, 0) rotate(0deg) scale(0.7);
+    }
+    30% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+        transform: translate(var(--deal-x), var(--deal-y)) rotate(var(--deal-rotate)) scale(1);
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    .card-inner,
+    .project-card.dealing,
+    .deal-button {
+        transition: none;
+        animation: none;
+    }
+    
+    .project-card.dealing {
+        opacity: 1;
+        transform: translate(var(--deal-x), var(--deal-y)) rotate(var(--deal-rotate)) scale(1);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cards-spread {
+        gap: 1.5rem;
+        padding: 1rem;
+    }
+    
+    .project-card {
+        width: 160px;
+        height: 224px;
+    }
+    
+    .card-title {
+        font-size: 0.9rem;
+    }
+    
+    .deal-button {
+        width: 100px;
+        height: 100px;
+        font-size: 1rem;
+    }
+    
+    .skip-intro-link {
+        top: 1rem;
+        right: 1rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Responsive card stack */
+    .card-stack {
+        width: 100px;
+        height: 140px;
+    }
+    
+    .card-stack .card-back {
+        width: 100px;
+        height: 140px;
+    }
+    
+    .card-stack .card-back::before {
+        font-size: 1.6rem;
+    }
+}
+
+/* ── Section Navigation Dots ─────────────────────────────── */
+.page-nav {
+    position: fixed;
+    right: 1.8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    z-index: 500;
+}
+
+.nav-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    border: none;
+    background-color: rgba(92, 64, 51, 0.25);
+    cursor: none;
+    padding: 0;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    position: relative;
+}
+
+.nav-dot::after {
+    content: attr(aria-label);
+    position: absolute;
+    right: calc(100% + 0.9rem);
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    text-transform: lowercase;
+    color: #5C4033;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.nav-dot:hover::after,
+.nav-dot.active::after {
+    opacity: 0.7;
+}
+
+.nav-dot.active {
+    background-color: #5C4033;
+    transform: scale(1.5);
+}
+
+.nav-dot:hover {
+    background-color: rgba(92, 64, 51, 0.6);
+    transform: scale(1.3);
+}
+
+.nav-dot.active:hover {
+    transform: scale(1.5);
+}
+
+/* Inverted dots for dark page 4 (poker) */
+.page-nav.nav-light .nav-dot {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.page-nav.nav-light .nav-dot.active {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.page-nav.nav-light .nav-dot:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.page-nav.nav-light .nav-dot::after {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .page-nav {
+        right: 1rem;
+        gap: 0.7rem;
+    }
+
+    .nav-dot::after {
+        display: none;
+    }
+}
+
+/* ── Page 5: Contact ─────────────────────────────────────── */
+.page-5 {
+    position: relative;
+    z-index: 1;
+    background-color: #E8E3D8;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-5-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M 0 0 L 50 0' stroke='%235C4033' stroke-width='1' stroke-dasharray='3,3' fill='none' opacity='0.3'/%3E%3Cpath d='M 0 0 L 0 50' stroke='%235C4033' stroke-width='1' stroke-dasharray='3,3' fill='none' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.page-5-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 4rem;
+    width: 100%;
+    max-width: 680px;
+}
+
+.contact-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: lowercase;
+    color: #6B4C93;
+    margin-bottom: 1rem;
+    margin-left: 2px;
+}
+
+.contact-heading {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #5C4033;
+    margin-bottom: 1.2rem;
+}
+
+.contact-subtext {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: #5C4033;
+    opacity: 0.65;
+    margin-bottom: 3rem;
+    max-width: 460px;
+}
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 420px;
+    margin-bottom: 4rem;
+}
+
+.contact-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid rgba(92, 64, 51, 0.18);
+    text-decoration: none;
+    color: #5C4033;
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    text-transform: lowercase;
+    transition: padding-left 0.25s ease;
+}
+
+.contact-link:first-child {
+    border-top: 1px solid rgba(92, 64, 51, 0.18);
+}
+
+.contact-link:hover {
+    padding-left: 0.6rem;
+}
+
+.contact-link-arrow {
+    opacity: 0.35;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.contact-link:hover .contact-link-arrow {
+    transform: translateX(5px);
+    opacity: 0.8;
+}
+
+.contact-copyright {
+    font-size: 0.72rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: #5C4033;
+    opacity: 0.35;
+    position: absolute;
+    bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .page-5-content {
+        padding: 3rem 2rem;
+    }
+}
