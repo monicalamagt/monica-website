@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monica Lama</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="custom-cursor"></div>
+
+    <!-- Page 1: Hero -->
+    <div class="page page-1">
+        <div class="page-1-grid"></div>
+<div class="page-content">
+            <h1>Monica Lama</h1>
+            <h2>AI Engineering · ML Research · Quant Systems</h2>
+        </div>
+    </div>
+
+    <!-- Page 2: About / Chat -->
+    <div class="page page-2">
+        <div class="page-2-grid"></div>
+        <svg class="page-2-squiggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" preserveAspectRatio="none">
+            <defs>
+                <linearGradient id="squiggleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" stop-color="#D4B3E8" stop-opacity="0"/>
+                    <stop offset="15%" stop-color="#D4B3E8" stop-opacity="0.5"/>
+                    <stop offset="85%" stop-color="#D4B3E8" stop-opacity="0.5"/>
+                    <stop offset="100%" stop-color="#D4B3E8" stop-opacity="0"/>
+                </linearGradient>
+            </defs>
+            <path d="M 20 250
+                     Q 35 350, 30 450
+                     Q 40 550, 35 650
+                     Q 45 750, 40 850"
+                  fill="none"
+                  stroke="url(#squiggleGradient)"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  vector-effect="non-scaling-stroke"/>
+        </svg>
+        <div class="page-2-about">
+            <img src="monica-photo.JPG" alt="Monica Lama" class="page-2-photo">
+            <div class="page-2-credentials">
+                <p>AI @ Penn Engineering</p>
+                <p>Quant Finance @ Wharton</p>
+            </div>
+        </div>
+        <div class="page-2-chat">
+            <p class="page-2-bio">I build machine learning systems at the intersection of research, large language models, and quantitative finance.</p>
+            <div class="chat-box" id="chatBox">
+                <div class="message bot-message">
+                    <p>Curious about my work, research, or background?<br>Ask me anything.</p>
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" placeholder="Type your question here…" autocomplete="off">
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Projects (Poker) -->
+    <div class="page page-4" id="pokerPage">
+        <div class="poker-table" id="pokerTable">
+            <div class="dealt-state" id="dealtState">
+                <div class="card-stack-container" id="cardStackContainer">
+                    <!-- Cards will be added here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4: Skills (Three.js blobs) -->
+    <div class="page page-3">
+        <div class="projects-label-container">
+            <div class="projects-label">my skills</div>
+            <div class="projects-hint">click a node to explore</div>
+        </div>
+        <div class="bubbles-container" id="bubblesContainer">
+            <!-- Bubbles will be dynamically generated here -->
+        </div>
+    </div>
+
+    <!-- Section navigation dots -->
+    <nav class="page-nav" aria-label="Page navigation">
+        <button class="nav-dot active" data-page="0" aria-label="Home"></button>
+        <button class="nav-dot" data-page="1" aria-label="About"></button>
+        <button class="nav-dot" data-page="2" aria-label="Projects"></button>
+        <button class="nav-dot" data-page="3" aria-label="Skills"></button>
+        <button class="nav-dot" data-page="4" aria-label="Contact"></button>
+    </nav>
+
+    <!-- Skill Detail Modal -->
+    <div class="project-modal" id="projectModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <div class="modal-body" id="modalBody">
+                <!-- Skill details will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5: Contact -->
+    <div class="page page-5">
+        <div class="page-5-grid"></div>
+        <div class="page-5-content">
+            <p class="contact-eyebrow">contact</p>
+            <h2 class="contact-heading">let's connect.</h2>
+            <p class="contact-subtext">Open to research collaborations, engineering roles, and interesting problems.</p>
+            <div class="contact-links">
+                <a href="mailto:mlama@wharton.upenn.edu" class="contact-link">
+                    <span class="contact-link-label">email</span>
+                    <span class="contact-link-arrow">→</span>
+                </a>
+                <a href="https://www.linkedin.com/in/monica-lama-gonzalez-teja-782097260" class="contact-link" target="_blank" rel="noopener">
+                    <span class="contact-link-label">linkedin</span>
+                    <span class="contact-link-arrow">→</span>
+                </a>
+                <a href="resume.pdf" class="contact-link" target="_blank">
+                    <span class="contact-link-label">resume</span>
+                    <span class="contact-link-arrow">→</span>
+                </a>
+            </div>
+            <p class="contact-copyright">© 2026 Monica Lama</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js?v=2"></script>
+    <script src="config.js"></script>
+    <script src="chat.js"></script>
+    <script src="projects-three.js?v=2"></script>
+    <script src="projects-poker.js"></script>
+</body>
+</html>
