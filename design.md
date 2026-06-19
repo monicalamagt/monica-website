@@ -1,55 +1,57 @@
 # Design — Monica Lama Portfolio
 
-Locked design system, extracted from the existing hand-built site (not a
-prior Hallmark build). Future Hallmark runs read this file first; pages
-defer to it. Amend intentionally — the file is the rule.
+Locked design system for the live homepage (`index.html`). Future Hallmark
+runs read this file first; pages defer to it. Amend intentionally — the
+file is the rule.
 
 ## System
-- Genre · blended — editorial/professional tone (academic + quant-finance credentials) with a playful centerpiece (hand-built poker-deal interaction, liquid-blob skill visualization). Doesn't map cleanly to one catalog genre; treat as its own thing rather than forcing a label.
-- Macrostructure · Custom — Scroll-Snap Narrative: 5 full-viewport, snap-locked sections (Hero → About/Chat → Projects/Poker → Skills/Blobs → Contact). No catalog macrostructure matches this shape.
-- Theme · custom (vibe: "warm parchment, espresso brown, quiet violet accent")
-- Axes · paper-band: light (~92% L) / display-style: system-sans, no display pairing / accent-hue: cool-violet (~300°)
+- Genre · modern-minimal (Stripe/Linear/dev-tool school — signalled by the bio's API/platform/developer-tool vocabulary)
+- Macrostructure · Bento Grid — a centered fixed-height hero band, then an asymmetric grid of mixed-span tiles (bio, education, work history, skills, contact)
+- Theme · catalog: Cobalt — cool engineered near-white paper, one electric-cobalt signal accent, hairline-bordered surfaces
+- Axes · paper-band: light (~98.5% L) / display-style: grotesk-sans (Space Grotesk) / accent-hue: cool-blue (~256°)
 
-## Tokens (canonical · `tokens.css` is the source of truth)
+## Tokens (canonical · `hallmark-redesign-tokens.css` is the source of truth)
 ```css
 :root {
-  --color-paper:        oklch(91.7% 0.016 86.4);  /* #E8E3D8 */
-  --color-paper-2:      oklch(96.2% 0.007 80.7);  /* #F5F2ED */
-  --color-night:        oklch(24.1% 0.038 51.1);  /* #2E1A0E — poker page */
-  --color-ink:          oklch(39.9% 0.045 45.9);  /* #5C4033 */
-  --color-ink-2:        oklch(27.9% 0.052 48.4);  /* #3D2010 */
-  --color-accent:       oklch(48.2% 0.114 302.5); /* #6B4C93 */
-  --color-accent-vivid: oklch(60.6% 0.219 292.7); /* #8B5CF6 — chips/blobs */
-  --color-focus:        var(--color-ink);
+  --color-paper:        oklch(98.5% 0.004 250);
+  --color-paper-2:      oklch(96.5% 0.006 252);
+  --color-graphite:     oklch(22%   0.016 260); /* code-card dark band */
+  --color-ink:          oklch(24%   0.02  258);
+  --color-ink-2:        oklch(34%   0.018 257);
+  --color-muted:        oklch(54%   0.014 256);
+  --color-rule:         oklch(90%   0.010 254);
+  --color-accent:       oklch(58%   0.20  256);
+  --color-accent-ink:   oklch(99%   0.003 250);
+  --color-focus:        var(--color-accent);
 
-  --font-display: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-body:    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono:    "Georgia", "Times New Roman", serif; /* poker monogram only */
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-body:    "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    "JetBrains Mono", ui-monospace, monospace; /* code card, kbd hints, stats only — 2-slot outlier */
 
-  /* 4-pt-ish spacing scale, named: --space-3xs … --space-2xl. See tokens.css. */
+  /* 4-pt canonical spacing scale: --space-3xs … --space-4xl. See hallmark-redesign-tokens.css. */
 
-  --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --dur-fast: 200ms;  --dur-base: 300ms;  --dur-slow: 400ms;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 180ms;  --dur-base: 280ms;  --dur-slow: 450ms;
 
-  --radius-card: 16px;  --radius-pill: 50%;  --radius-input: 8px;
+  --radius-control: 6px;  --radius-card: 10px;
 }
 ```
 
 ## CTA voice
-- Primary · solid ink-brown fill, white text, 8px radius (`#sendButton`)
-- Secondary · text link + arrow glyph, hover = padding-shift (`.contact-link`)
+- Primary · solid cobalt fill, `--color-accent-ink` text, 6px radius (`.btn--accent`, `#sendButton`)
+- Secondary · text link + hairline underline, hover/focus = accent colour shift (`.contact-link`, `.nav__links a`)
 
 ## Motion stance
-- Hand-rolled CSS keyframes + vanilla Three.js — no animation library ("motion-cut" in Hallmark's terms, despite being motion-rich).
-- `prefers-reduced-motion` is handled for the poker-deal sequence; not yet applied to the liquid-blob shimmer or modal scale transition.
+- Three primitives, capped per the diversification rule: hero code-card type-in (one-shot), bento-tile stagger reveal (one-shot, IntersectionObserver), hover/focus border-colour shift.
+- Reduced-motion fallback implemented for all three; see `hallmark-redesign.css` bottom block.
+- Nav ships a real working ⌘K command palette (Cobalt's signature move) — not decorative.
 
 ## Exports
-`tokens.css` (this project) is the source of truth. For Tailwind v4 `@theme`,
-DTCG `tokens.json`, or shadcn/ui CSS variables, ask for those formats and
-Hallmark will append them.
+`hallmark-redesign-tokens.css` (this project) is the source of truth. For
+Tailwind v4 `@theme`, DTCG `tokens.json`, or shadcn/ui CSS variables, ask
+for those formats and Hallmark will append them.
 
 ## Notes
-- No real display/body font pairing exists today — every heading and body line uses the system-ui stack. This file locks that as-is rather than introducing a new face; say so if you want one.
-- Spacing has no formal scale today; the tokens above are the closest match to values already in use (0.3rem–4rem), not a retrofit.
-- Most transitions use the browser default `ease`, not `--ease-out` — only the modal and bubble-label transitions use the named curve. Locked as observed, not cleaned up.
-- `tokens.css` is additive only. `styles.css` still has its original literal hex/rem values — wiring it to consume these tokens is a separate, larger edit, not done here.
+- **This file describes `index.html` only.** Six linked project-detail pages — `project-alpha.html`, `design-system.html`, `mobile-app.html`, `api-platform.html`, `data-visualization.html`, `chat.html` — still use the *original* warm-parchment system (`styles.css` / `tokens.css` at the project root) and are no longer linked from the live homepage (the Bento redesign shows project detail inline in tiles instead of separate pages). They still deploy and are reachable by direct URL. Migrating or retiring them is a separate, unstarted task.
+- The original homepage design (palette, fonts, poker game, liquid-blob skill visualization) is fully preserved in `old-site-backup/` and tagged `old-design-v1` in git — not deleted, just no longer live.
+- Contrast on the Cobalt palette was checked by OKLCH lightness-gap heuristic, not full APCA computation — worth verifying precisely if this system gets extended.
