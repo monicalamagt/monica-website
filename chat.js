@@ -16,6 +16,15 @@ Contact: mlama@wharton.upenn.edu | LinkedIn: linkedin.com/in/monica-lama-gonzale
 
 ## Experience
 
+**Entanglement — AI Research Engineer** (Part-time, Aug 2026–Present)
+- Works on LLM evaluation and latency projects
+
+**Goldman Sachs — Incoming Analyst** (Summer 2027)
+- Incoming Analyst in Asset & Wealth Management (AWM), Quantitative Equity Solutions (QES) team
+
+**Suits — AI Engineering Intern** (2026)
+- Helped build AI tooling for an early-stage startup's platform, focused on agentic AI and LangGraph-based workflows
+
 **Crypt0nest.io — AI/ML R&D Intern** (June–Sept 2025, Remote)
 - Built and deployed LSTM and Transformer-based pipelines for crypto asset modeling
 - Reduced MAPE by 15% and improved F1 score by 12% through iterative model refinement and hyperparameter tuning
